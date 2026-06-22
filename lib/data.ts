@@ -94,6 +94,65 @@ export const projects: Project[] = [
   },
 ];
 
+export type JourneyEntry = {
+  period: string;
+  title: string;
+  tagline: string;
+  bullets: string[];
+  tags: string[];
+  accent: string;
+};
+
+// Projects framed as a journey — oldest first, building up to "now".
+export const journey: JourneyEntry[] = [
+  {
+    period: "2024",
+    title: "MERN To-Do — first full-stack app",
+    tagline: "Where it clicked",
+    bullets: [
+      "Built a secure task manager with JWT + bcrypt auth and Google Sign-In.",
+      "Full CRUD with per-user tasks and a glassmorphism UI.",
+      "Shipped it serverlessly on Vercel with MongoDB Atlas.",
+    ],
+    tags: ["React", "Express", "MongoDB", "JWT"],
+    accent: "#22d3ee",
+  },
+  {
+    period: "2025",
+    title: "Pachtaki Yadu — civic portal",
+    tagline: "Tech for my hometown",
+    bullets: [
+      "Let citizens report local issues and admins manage them from one dashboard.",
+      "Built role-based access, email confirmations, and a public status tracker.",
+    ],
+    tags: ["JavaScript", "Node.js", "MongoDB", "Google OAuth"],
+    accent: "#a855f7",
+  },
+  {
+    period: "2025",
+    title: "Folo — social platform",
+    tagline: "Shipping a full product, solo",
+    bullets: [
+      "Built an Instagram-style app end to end: auth, posts, stories, feeds.",
+      "Added encrypted DMs with typing & presence, plus AI captions and moderation.",
+      "Designed a premium dark UI and deployed on Vercel.",
+    ],
+    tags: ["Next.js", "TypeScript", "Prisma", "MongoDB"],
+    accent: "#6366f1",
+  },
+  {
+    period: "Now",
+    title: "Leveling up",
+    tagline: "What's next",
+    bullets: [
+      "Going deeper into Data Science — data wrangling, insights, and ML.",
+      "Sharpening DSA in C & Python — 3★ on CodeChef and climbing.",
+    ],
+    tags: ["Python", "DSA", "Data Science"],
+    accent: "#10b981",
+  },
+];
+
 export const education = [
   {
     school: "National Institute of Technology, Durgapur",

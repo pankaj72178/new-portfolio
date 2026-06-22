@@ -178,6 +178,50 @@ body {
   }
 }
 
+/* ---------- CSS 3D wireframe sphere (Contact) ---------- */
+.sphere-stage {
+  perspective: 900px;
+  width: 220px;
+  height: 220px;
+}
+.sphere {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  transform-style: preserve-3d;
+  animation: sphere-spin 22s linear infinite;
+}
+.sphere-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(120, 140, 255, 0.45);
+  box-shadow: 0 0 18px rgba(79, 107, 255, 0.12) inset;
+}
+.sphere-ring.lat {
+  border-color: rgba(168, 85, 247, 0.4);
+}
+.sphere-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 46px;
+  width: 46px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, #a5b4ff, #5b6cff 45%, transparent 72%);
+  filter: blur(2px);
+  box-shadow: 0 0 60px 12px rgba(91, 108, 255, 0.55);
+}
+@keyframes sphere-spin {
+  from {
+    transform: rotateY(0deg) rotateX(14deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(14deg);
+  }
+}
+
 /* Custom scrollbar. */
 ::-webkit-scrollbar {
   width: 10px;
