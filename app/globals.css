@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050505;
+  --foreground: #eef0f6;
 }
 
 @theme inline {
@@ -12,15 +12,193 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background: #050505;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom cursor on fine-pointer devices (real cursor hidden). */
+@media (pointer: fine) {
+  * {
+    cursor: none;
+  }
+}
+
+/* ---------- Premium utilities ---------- */
+.glass {
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, #ffffff 0%, #b9c0ff 45%, #c98bff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-glow {
+  text-shadow: 0 0 40px rgba(120, 110, 255, 0.45);
+}
+
+/* Ambient glow blobs (fixed, behind content). */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ambient::before,
+.ambient::after {
+  content: "";
+  position: absolute;
+  width: 48vw;
+  height: 48vw;
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: 0.35;
+}
+.ambient::before {
+  background: radial-gradient(circle, #3b4cff, transparent 70%);
+  top: -14vw;
+  left: -10vw;
+}
+.ambient::after {
+  background: radial-gradient(circle, #a020f0, transparent 70%);
+  bottom: -16vw;
+  right: -10vw;
+}
+
+/* Buttons */
+.btn-primary {
+  position: relative;
+  background: linear-gradient(110deg, #4f6bff, #a855f7);
+  box-shadow: 0 12px 40px rgba(99, 102, 241, 0.45);
+  transition: box-shadow 0.3s, filter 0.2s;
+}
+.btn-primary:hover {
+  box-shadow: 0 16px 54px rgba(168, 85, 247, 0.6);
+  filter: brightness(1.08);
+}
+.btn-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 0.3s, background 0.3s;
+}
+.btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Subtle grid texture. */
+.grid-fade {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+/* ---------- Isometric tech grid (CSS 3D, no WebGL) ---------- */
+.tech-stage {
+  perspective: 1200px;
+  perspective-origin: 50% 30%;
+}
+.tech-plane {
+  display: grid;
+  grid-template-columns: repeat(4, 6.5rem);
+  gap: 1.1rem;
+  transform: rotateX(36deg) rotateZ(-6deg);
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.tech-tile {
+  position: relative;
+  display: flex;
+  height: 6.5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  border-color: rgba(255, 255, 255, 0.08);
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s, border-color 0.4s;
+  will-change: transform;
+}
+.tech-tile::before {
+  /* extruded side wall for a 3D "key" feel */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  background: linear-gradient(var(--accent), transparent 80%);
+  opacity: 0.08;
+  transform: translateZ(-1px);
+}
+.tech-tile:hover {
+  transform: translateZ(48px) scale(1.04);
+  border-color: var(--accent);
+  box-shadow: 0 28px 48px -18px var(--accent), 0 0 0 1px var(--accent) inset;
+}
+.tech-dot {
+  height: 0.6rem;
+  width: 0.6rem;
+  border-radius: 9999px;
+}
+.tech-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.82);
+  letter-spacing: -0.01em;
+}
+@media (max-width: 640px) {
+  .tech-plane {
+    grid-template-columns: repeat(3, 5.4rem);
+    gap: 0.8rem;
+    transform: rotateX(28deg) rotateZ(-4deg);
+  }
+  .tech-tile {
+    height: 5.4rem;
+  }
+}
+
+/* Custom scrollbar. */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#4f6bff, #a855f7);
+  border-radius: 99px;
+  border: 2px solid #050505;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }
