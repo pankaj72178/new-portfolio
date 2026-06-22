@@ -12,7 +12,7 @@ export const profile = {
   socials: {
     github: "https://github.com/pankaj72178",
     linkedin: "https://www.linkedin.com/in/pankaj-kumar721/",
-    codechef: "https://www.codechef.com/users/pankaj721784",
+    codechef: "https://www.codechef.com/users/pankaj72178",
   },
   badges: ["3⭐ CodeChef", "NIT Durgapur", "Open to internships"],
 };
