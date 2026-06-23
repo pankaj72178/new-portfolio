@@ -106,7 +106,7 @@ export type JourneyEntry = {
 // Projects framed as a journey — oldest first, building up to "now".
 export const journey: JourneyEntry[] = [
   {
-    period: "2024",
+    period: "2026",
     title: "MERN To-Do — first full-stack app",
     tagline: "Where it clicked",
     bullets: [
@@ -118,7 +118,7 @@ export const journey: JourneyEntry[] = [
     accent: "#22d3ee",
   },
   {
-    period: "2025",
+    period: "2026",
     title: "Pachtaki Yadu — civic portal",
     tagline: "Tech for my hometown",
     bullets: [
@@ -129,7 +129,7 @@ export const journey: JourneyEntry[] = [
     accent: "#a855f7",
   },
   {
-    period: "2025",
+    period: "2026",
     title: "Folo — social platform",
     tagline: "Shipping a full product, solo",
     bullets: [
