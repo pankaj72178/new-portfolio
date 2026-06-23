@@ -19,7 +19,7 @@ export const profile = {
 
 export const about = {
   paragraphs: [
-    "I’m a Computer Science & Engineering student at NIT Durgapur, driven by one question I keep asking: “How does this actually work?” That curiosity pulled me into software and keeps me building.",
+    "Curiosity is my default setting. The question I keep coming back to — “How does this actually work?” — is what pulled me into software, and it’s what keeps me building every single day.",
     "I’ve focused on a genuine full-stack foundation — React on the frontend, Node/Express + MongoDB on the backend — while sharpening problem-solving through DSA in Python and C. Right now I’m going deeper into Data Science: working with data, drawing insights, and building things that make smarter decisions.",
     "What I enjoy most is the moment an idea becomes a working project — debugging until it clicks, competing in coding challenges, and shipping with people in hackathons and tech communities.",
   ],

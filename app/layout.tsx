@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import CursorFollower from "@/components/CursorFollower";
+import ScrollProgress from "@/components/ScrollProgress";
+import SmoothScroll from "@/components/SmoothScroll";
+import Spotlight from "@/components/Spotlight";
+import Particles from "@/components/Particles";
 import Background from "@/components/three/Background";
 import { profile } from "@/lib/data";
 
@@ -13,6 +17,13 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+// Premium display typeface for headings.
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
 const description =
@@ -55,16 +66,26 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <body className="relative min-h-full overflow-x-hidden bg-[#050505] text-foreground">
+        {/* Aurora animated background */}
+        <div className="aurora pointer-events-none fixed inset-0 -z-20" />
         {/* Ambient blue/purple glow + grid texture */}
         <div className="ambient pointer-events-none fixed inset-0 -z-10" />
         <div className="grid-fade pointer-events-none fixed inset-0 -z-10" />
+        {/* Floating particle layer */}
+        <Particles />
+        {/* Spotlight glow trailing the cursor */}
+        <Spotlight />
         {/* Lazy WebGL starfield + floating gem */}
         <Background />
         {/* Custom cursor (pointer:fine only) */}
         <CursorFollower />
+        {/* Scroll progress bar */}
+        <ScrollProgress />
+        {/* Lenis smooth scrolling */}
+        <SmoothScroll />
         <div className="relative z-10 flex min-h-full flex-col">{children}</div>
       </body>
     </html>

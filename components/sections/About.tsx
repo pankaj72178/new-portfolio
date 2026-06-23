@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Reveal from "@/components/Reveal";
+import CountUp from "@/components/CountUp";
 import { about, profile, education } from "@/lib/data";
 
 function Avatar() {
@@ -63,7 +64,7 @@ export default function About() {
           <Reveal delay={0.2} className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {about.stats.map((s) => (
               <div key={s.label} className="glass rounded-2xl px-4 py-4 text-center">
-                <div className="gradient-text text-2xl font-bold">{s.value}</div>
+                <CountUp value={s.value} className="gradient-text text-2xl font-bold" />
                 <div className="mt-1 text-xs text-white/50">{s.label}</div>
               </div>
             ))}

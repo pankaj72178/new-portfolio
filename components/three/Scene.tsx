@@ -5,6 +5,23 @@ import { Float, MeshDistortMaterial, Stars } from "@react-three/drei";
 import { useRef } from "react";
 import type { Group, Mesh } from "three";
 
+function MovingStars() {
+  const ref = useRef<Group>(null);
+  useFrame(() => {
+    if (!ref.current) return;
+    // Parallax: rotate + drift the starfield as the page scrolls.
+    const s = typeof window !== "undefined" ? window.scrollY : 0;
+    ref.current.rotation.y = s * 0.00018;
+    ref.current.rotation.x = s * 0.00009;
+    ref.current.position.y = s * 0.0011;
+  });
+  return (
+    <group ref={ref}>
+      <Stars radius={60} depth={40} count={2200} factor={3.2} saturation={0} fade speed={0.6} />
+    </group>
+  );
+}
+
 function FloatingGem() {
   const group = useRef<Group>(null);
   const mesh = useRef<Mesh>(null);
@@ -50,7 +67,7 @@ export default function Scene() {
       <ambientLight intensity={0.4} />
       <pointLight position={[-6, 4, 4]} intensity={120} color="#4f6bff" />
       <pointLight position={[6, -3, 2]} intensity={90} color="#a855f7" />
-      <Stars radius={60} depth={40} count={2200} factor={3.2} saturation={0} fade speed={0.6} />
+      <MovingStars />
       <FloatingGem />
     </Canvas>
   );

@@ -34,6 +34,30 @@ body {
   }
 }
 
+/* Premium display typography for headings. */
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+  letter-spacing: -0.025em;
+}
+
+/* Lenis smooth scrolling. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 /* ---------- Premium utilities ---------- */
 .glass {
   background: rgba(255, 255, 255, 0.035);
@@ -44,10 +68,24 @@ body {
 }
 
 .gradient-text {
-  background: linear-gradient(120deg, #ffffff 0%, #b9c0ff 45%, #c98bff 100%);
+  background: linear-gradient(
+    120deg,
+    #ffffff 0%,
+    #b9c0ff 30%,
+    #c98bff 50%,
+    #b9c0ff 70%,
+    #ffffff 100%
+  );
+  background-size: 220% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: gradient-flow 7s linear infinite;
+}
+@keyframes gradient-flow {
+  to {
+    background-position: 220% center;
+  }
 }
 
 .text-glow {
@@ -81,6 +119,108 @@ body {
   background: radial-gradient(circle, #a020f0, transparent 70%);
   bottom: -16vw;
   right: -10vw;
+}
+
+/* Aurora animated background — two slow-rotating blurred color blooms. */
+.aurora {
+  overflow: hidden;
+}
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  will-change: transform;
+}
+.aurora::before {
+  width: 62vw;
+  height: 62vw;
+  top: -22vw;
+  left: -12vw;
+  opacity: 0.22;
+  background: conic-gradient(
+    from 90deg,
+    rgba(79, 107, 255, 0.55),
+    rgba(168, 85, 247, 0.45),
+    rgba(34, 211, 238, 0.35),
+    rgba(79, 107, 255, 0.55)
+  );
+  animation: aurora-spin 26s linear infinite;
+}
+.aurora::after {
+  width: 56vw;
+  height: 56vw;
+  bottom: -22vw;
+  right: -12vw;
+  opacity: 0.2;
+  background: conic-gradient(
+    from 270deg,
+    rgba(168, 85, 247, 0.5),
+    rgba(34, 211, 238, 0.35),
+    rgba(79, 107, 255, 0.5),
+    rgba(168, 85, 247, 0.5)
+  );
+  animation: aurora-spin 34s linear infinite reverse;
+}
+@keyframes aurora-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Floating particles. */
+.particle {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 6px rgba(150, 165, 255, 0.6);
+  animation-name: particle-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes particle-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(var(--drift, 0), -32px, 0);
+  }
+}
+
+/* Slow-drifting ambient orbs (extra motion layer). */
+.ambient::before {
+  animation: drift-a 16s ease-in-out infinite alternate;
+}
+.ambient::after {
+  animation: drift-b 19s ease-in-out infinite alternate;
+}
+@keyframes drift-a {
+  to {
+    transform: translate(8vw, 6vw) scale(1.15);
+    opacity: 0.5;
+  }
+}
+@keyframes drift-b {
+  to {
+    transform: translate(-7vw, -5vw) scale(1.2);
+    opacity: 0.5;
+  }
+}
+
+/* Infinite keyword marquee. */
+.marquee-track {
+  animation: marquee 30s linear infinite;
+  min-width: 100%;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 /* Buttons */
