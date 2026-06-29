@@ -63,6 +63,16 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "JobFit AI",
+    tagline: "AI résumé ↔ job matcher",
+    description:
+      "Paste a résumé (or upload a PDF) and any job description to get an instant match score, missing keywords, improvement tips, roles that fit you, and AI-rewritten bullets — plus a built-in application tracker. Powered by the Claude API with structured outputs.",
+    tags: ["Next.js", "TypeScript", "Claude API", "Tailwind"],
+    live: "https://jobfit-ai-one.vercel.app/",
+    github: "https://github.com/pankaj72178/jobfit-ai",
+    accent: "#8b5cf6",
+  },
+  {
     title: "Folo",
     tagline: "Instagram-style social app",
     description:
@@ -139,6 +149,18 @@ export const journey: JourneyEntry[] = [
     ],
     tags: ["Next.js", "TypeScript", "Prisma", "MongoDB"],
     accent: "#6366f1",
+  },
+  {
+    period: "2026",
+    title: "JobFit AI — résumé matcher",
+    tagline: "Building with AI",
+    bullets: [
+      "Built an AI tool that scores a résumé against any job and rewrites bullets.",
+      "Integrated the Claude API with structured outputs for reliable JSON results.",
+      "Added PDF résumé upload, role recommendations, and an application tracker.",
+    ],
+    tags: ["Next.js", "TypeScript", "Claude API", "Tailwind"],
+    accent: "#8b5cf6",
   },
   {
     period: "Now",
